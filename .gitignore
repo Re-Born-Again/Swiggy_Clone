@@ -1,0 +1,36 @@
+# Flutter/Dart/Pub related
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub/
+build/
+
+# Android related
+/android/app/debug/
+.android/
+*.apk
+
+# iOS related
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/Flutter/Flutter.podspec.json
+ios/Flutter/flutter_export_environment.sh
+ios/Pods/
+ios/Flutter/Flutter.podspec
+ios/.symlinks/
+ios/Pods/
+*.xcworkspace
+*.xcscheme
+
+# VS Code
+.vscode/
+
+# Mac OS X
+.DS_Store
+
+# Linux
+*~
+
+# Windows
+Thumbs.db
