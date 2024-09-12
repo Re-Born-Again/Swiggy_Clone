@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:swiggy_clone/signin_page.dart';
 import 'restaurant_container.dart';
 import 'dish_pages.dart';
 
@@ -14,6 +17,18 @@ class RestaurantPage extends StatelessWidget {
             style: TextStyle(color: Colors.black),
             textAlign: TextAlign.left,
           ),
+          actions: [
+            TextButton(
+                onPressed: () async {
+                  await FirebaseAuth.instance.signOut();
+                  await GoogleSignIn().signOut();
+                  if (context.mounted) {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (_) => const SigninPage()));
+                  }
+                },
+                child: const Text('Sign out')),
+          ],
           backgroundColor: Colors.white,
         ),
         backgroundColor: Colors.white,
@@ -76,4 +91,3 @@ class RestaurantPage extends StatelessWidget {
         ));
   }
 }
-

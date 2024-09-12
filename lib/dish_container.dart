@@ -115,6 +115,7 @@ class DishContainerState extends State<DishContainer> {
                                     children: [
                                       GestureDetector(
                                           onTap: () {
+                                            widget.onTap();
                                             setState(() {
                                               itemCount--;
                                               if (itemCount <= 0) {
