@@ -1,4 +1,8 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
+import 'package:swiggy_clone/dish_pages.dart';
+import 'package:swiggy_clone/payment_page.dart';
 import 'delivery_instruction_container.dart';
 
 // dishName
@@ -6,14 +10,10 @@ import 'delivery_instruction_container.dart';
 // price
 
 class OrderPages extends StatefulWidget {
-  final String dishName;
-  final String itemCount;
-  final String price;
+  final List<DishInfo> dishes;
   const OrderPages({
     super.key,
-    required this.dishName,
-    required this.itemCount,
-    required this.price,
+    required this.dishes,
   });
 
   @override
@@ -23,32 +23,22 @@ class OrderPages extends StatefulWidget {
 class _OrderPagesState extends State<OrderPages> {
   @override
   Widget build(BuildContext context) {
+    double total = 0;
+    for (final dish in widget.dishes) {
+      total += dish.price * dish.count;
+    }
+    final deliveryFee = total >= 150 ? 0.0 : 40.0;
+    final toPay = total + 6 + 8.33 + deliveryFee;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Order Page"),
-        backgroundColor: const Color.fromARGB(255, 239, 239, 239),
+        backgroundColor: Colors.white,
       ),
       backgroundColor: const Color.fromARGB(255, 239, 239, 239),
       body: ListView(
         padding: const EdgeInsets.all(15),
         children: [
-          Container(
-            margin: const EdgeInsets.fromLTRB(0, 0, 0, 15),
-            padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 230, 255, 241),
-                borderRadius: BorderRadius.circular(15),
-                border: Border.all(
-                  color: Colors.green,
-                )),
-            child: const Text(
-              '₹15 saved! On this order',
-              style: TextStyle(
-                color: Colors.green,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
           Container(
             padding: const EdgeInsets.all(15),
             decoration: BoxDecoration(
@@ -60,21 +50,81 @@ class _OrderPagesState extends State<OrderPages> {
               child: Column(
                 children: [
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        widget.dishName,
-                        style: const TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.w500),
+                    children: const [
+                      Expanded(
+                        flex: 2,
+                        child: Text(
+                          "Item",
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
                       ),
-                      Text(widget.itemCount),
-                      Text(
-                        widget.price,
-                        style: const TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.w500),
+                      Expanded(
+                        flex: 1,
+                        child: Text(
+                          'Quantity',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 2,
+                        child: Text(
+                          'Price',
+                          textAlign: TextAlign.end,
+                          style: TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
                       ),
                     ],
                   ),
+                  const Divider(),
+                  for (final dish in widget.dishes)
+                    Row(
+                      children: [
+                        Expanded(
+                          flex: 2,
+                          child: Text(
+                            dish.name,
+                            textAlign: TextAlign.start,
+                            style: const TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            '${dish.count}',
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 2,
+                          child: Text(
+                            '₹${(dish.price * dish.count).toStringAsFixed(2)}',
+                            textAlign: TextAlign.end,
+                            style: const TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   const Divider(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -215,22 +265,26 @@ class _OrderPagesState extends State<OrderPages> {
               scrollDirection: Axis.horizontal,
               children: const [
                 DeliveryInstructionsContainer(
-                    textContent: "Avoid ringing bell", iconContent: Icons.notifications_off),
+                    textContent: "Avoid ringing bell",
+                    iconContent: Icons.notifications_off),
                 SizedBox(
                   width: 15,
                 ),
                 DeliveryInstructionsContainer(
-                    textContent: "Leave at the door", iconContent: Icons.door_back_door_rounded),
+                    textContent: "Leave at the door",
+                    iconContent: Icons.door_back_door_rounded),
                 SizedBox(
                   width: 15,
                 ),
                 DeliveryInstructionsContainer(
-                    textContent: "Directions to reach", iconContent: Icons.location_on),
+                    textContent: "Directions to reach",
+                    iconContent: Icons.location_on),
                 SizedBox(
                   width: 15,
                 ),
                 DeliveryInstructionsContainer(
-                    textContent: "Avoid calling", iconContent: Icons.phone_disabled),
+                    textContent: "Avoid calling",
+                    iconContent: Icons.phone_disabled),
               ],
             ),
           ),
@@ -241,8 +295,8 @@ class _OrderPagesState extends State<OrderPages> {
             "Bill Details",
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
-          const Card(
-            margin: EdgeInsets.fromLTRB(0, 15, 0, 15),
+          Card(
+            margin: const EdgeInsets.fromLTRB(0, 15, 0, 15),
             color: Colors.white,
             elevation: 0,
             child: Padding(
@@ -255,7 +309,7 @@ class _OrderPagesState extends State<OrderPages> {
                     children: [
                       Text("Item Total"),
                       Text(
-                        "₹100.00",
+                        "₹$total",
                         style: TextStyle(fontWeight: FontWeight.w500),
                       ),
                     ],
@@ -265,7 +319,7 @@ class _OrderPagesState extends State<OrderPages> {
                     children: [
                       Text("Delivery Fee"),
                       Text(
-                        "₹40.00",
+                        "₹${deliveryFee.toString()}",
                         style: TextStyle(fontWeight: FontWeight.w500),
                       ),
                     ],
@@ -274,22 +328,10 @@ class _OrderPagesState extends State<OrderPages> {
                     "Order above Rs 149 for Discounted delivery!",
                     style: TextStyle(color: Colors.grey),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Extra discount for you"),
-                      Text(
-                        "-₹15.00",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            color: Color.fromARGB(255, 0, 162, 5)),
-                      ),
-                    ],
-                  ),
                   Divider(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
+                    children: const [
                       Text("Delivery Tip"),
                       Text(
                         "Add tip",
@@ -300,17 +342,17 @@ class _OrderPagesState extends State<OrderPages> {
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
+                    children: const [
                       Text("Platform fee"),
                       Text(
-                        "₹6.00",
+                        "₹6.0",
                         style: TextStyle(fontWeight: FontWeight.w500),
                       ),
                     ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
+                    children: const [
                       Text("GST and Restaurant Chargers"),
                       Text(
                         "₹8.33",
@@ -328,7 +370,7 @@ class _OrderPagesState extends State<OrderPages> {
                             fontWeight: FontWeight.bold, fontSize: 15),
                       ),
                       Text(
-                        "₹139",
+                        "₹$toPay",
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 15),
                       ),
@@ -339,7 +381,10 @@ class _OrderPagesState extends State<OrderPages> {
             ),
           ),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const PaymentPage()));
+            },
             style: ElevatedButton.styleFrom(
                 backgroundColor: const Color.fromARGB(255, 45, 181, 79),
                 foregroundColor: Colors.white,

@@ -1,28 +1,25 @@
 import 'package:flutter/material.dart';
 
-class DishContainer extends StatefulWidget {
+class DishContainer extends StatelessWidget {
   final String dishName;
-  final String price;
+  final int price;
   final String rating;
   final String description;
-  final String imglink;
-  final VoidCallback onTap;
+  final String imgLink;
+  final int count;
+  final VoidCallback onTapPlus;
+  final VoidCallback onTapMinus;
   const DishContainer({
     super.key,
     required this.dishName,
     required this.price,
     required this.rating,
     required this.description,
-    required this.imglink,
-    required this.onTap,
+    required this.imgLink,
+    required this.count,
+    required this.onTapPlus,
+    required this.onTapMinus,
   });
-
-  @override
-  State<DishContainer> createState() => DishContainerState();
-}
-
-class DishContainerState extends State<DishContainer> {
-  int itemCount = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -40,17 +37,17 @@ class DishContainerState extends State<DishContainer> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.dishName,
+                      dishName,
                       style: const TextStyle(
                           fontSize: 17, fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      widget.price,
+                      "₹$price",
                       style: const TextStyle(
                           fontSize: 15, fontWeight: FontWeight.w500),
                     ),
                     Text(
-                      widget.rating,
+                      rating,
                       style: const TextStyle(
                           fontSize: 15, fontWeight: FontWeight.w500),
                     ),
@@ -67,7 +64,7 @@ class DishContainerState extends State<DishContainer> {
                         ],
                       ),
                     ),
-                    Text(widget.description),
+                    Text(description),
                   ],
                 ),
                 SizedBox(
@@ -77,7 +74,7 @@ class DishContainerState extends State<DishContainer> {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(20),
                         child: Image.network(
-                          widget.imglink,
+                          imgLink,
                           height: 150, // Fixed height for the image
                           width: 150, // Fixed width for the image
                           fit: BoxFit.cover,
@@ -90,11 +87,9 @@ class DishContainerState extends State<DishContainer> {
                           width: 120,
                           child: ElevatedButton(
                             onPressed: () {
-                              setState(() {
-                                if (itemCount == 0) {
-                                  itemCount = 1;
-                                }
-                              });
+                              if (count == 0) {
+                                onTapPlus();
+                              }
                             },
                             style: ElevatedButton.styleFrom(
                                 shape: RoundedRectangleBorder(
@@ -103,7 +98,7 @@ class DishContainerState extends State<DishContainer> {
                                 foregroundColor:
                                     const Color.fromARGB(255, 25, 182, 30),
                                 minimumSize: const Size(100, 35)),
-                            child: itemCount == 0
+                            child: count == 0
                                 ? const Text(
                                     "ADD",
                                     style: TextStyle(
@@ -111,18 +106,11 @@ class DishContainerState extends State<DishContainer> {
                                         fontWeight: FontWeight.w800),
                                   )
                                 : Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
                                     children: [
                                       GestureDetector(
-                                          onTap: () {
-                                            widget.onTap();
-                                            setState(() {
-                                              itemCount--;
-                                              if (itemCount <= 0) {
-                                                itemCount = 0;
-                                              }
-                                            });
-                                          },
+                                          onTap: onTapMinus,
                                           child: const Icon(
                                             Icons.remove,
                                             color: Color.fromARGB(
@@ -131,18 +119,14 @@ class DishContainerState extends State<DishContainer> {
                                       Padding(
                                         padding: const EdgeInsets.all(1),
                                         child: Text(
-                                          "$itemCount",
+                                          "$count",
                                           style: const TextStyle(
                                               fontSize: 18,
                                               fontWeight: FontWeight.w800),
                                         ),
                                       ),
                                       GestureDetector(
-                                        onTap: () {
-                                          setState(() {
-                                            itemCount++;
-                                          });
-                                        },
+                                        onTap: onTapPlus,
                                         child: const Icon(
                                           Icons.add,
                                           color:

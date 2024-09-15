@@ -18,25 +18,27 @@ class _DeliveryInstructionsContainerState
     extends State<DeliveryInstructionsContainer> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(15),
-      width: 100,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Icon(widget.iconContent),
-          const SizedBox(
-            height: 5,
-          ),
-          Text(
-            widget.textContent,
-            style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
-          ),
-        ],
+    return GestureDetector(
+      child: Container(
+        padding: const EdgeInsets.all(15),
+        width: 100,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Icon(widget.iconContent),
+            const SizedBox(
+              height: 5,
+            ),
+            Text(
+              widget.textContent,
+              style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
+            ),
+          ],
+        ),
       ),
     );
   }

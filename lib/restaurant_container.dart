@@ -50,10 +50,19 @@ class RestaurantContainer extends StatelessWidget {
                             fontSize: 18, fontWeight: FontWeight.w900),
                       ),
                       const SizedBox(height: 4),
-                      Text(
-                        '$rating • $time',
-                        style: const TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.w500),
+                      Row(
+                        children: [
+                          const Icon(
+                            Icons.star_rounded,
+                            color: Colors.green,
+                            size: 20,
+                          ),
+                          Text(
+                            '$rating • $time',
+                            style: const TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.w500),
+                          ),
+                        ],
                       ),
                       const SizedBox(height: 4),
                       Text(location),
@@ -66,4 +75,3 @@ class RestaurantContainer extends StatelessWidget {
         ));
   }
 }
-
