@@ -370,7 +370,7 @@ class _OrderPagesState extends State<OrderPages> {
                             fontWeight: FontWeight.bold, fontSize: 15),
                       ),
                       Text(
-                        "₹$toPay",
+                        "₹${toPay.toStringAsFixed(2)}",
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 15),
                       ),
