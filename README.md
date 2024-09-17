@@ -17,9 +17,12 @@ This app provides seamless user authentication with Google, displays restaurants
 
 ## Tech Stack
 
-- **Frontend:** 
-  - Flutter
+- **Flutter:**
+  -  Frontend framework for building the user interface.
 
-- **Backend:** 
-  - Firebase
-  - Firestore (Database)
+- **Firebase:** 
+  - Backend services for authentication (Google Auth) and database (Firestore).
+  - **Firebase Authentication:**
+    - Google Sign-In.
+  - **Firestore:**
+    - Fetches restaurant and dish details.
