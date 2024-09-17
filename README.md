@@ -7,12 +7,13 @@ This app provides seamless user authentication with Google, displays restaurants
 
 ## Features
 
-- User Authentication (Login/Signup)
-- Browse Restaurants and Menus
-- Add Items to Cart
-- Place Orders
-- Search for Restaurants or Dishes
-- Responsive Design for both Android and iOS 
+- Google Authentication: Sign in using your Google account powered by Firebase Authentication.
+- Restaurant Listing: View a list of restaurants, each showing the restaurant name, rating, location and delivery time.
+- Restaurant Details: Click on a restaurant to view the available dishes along with their name, prices, ratings, and descriptions.
+- Add to Cart: Add dishes to your cart, with the ability to increase/decrease quantities.
+- Order Summary: View the selected dishes with their quantities, and get the total bill before proceeding to payment.
+- Payment Options: Choose from various payment methods and complete your purchase with a success notification.
+- Responsive Design for both Android and iOS.
 
 ## Tech Stack
 
