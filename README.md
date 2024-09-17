@@ -1,16 +1,22 @@
-# swiggy_clone
 
-A new Flutter project.
+# Swiggy Clone
 
-## Getting Started
+This project is a **clone of Swiggy**, a popular food delivery platform, designed to simulate its core functionalities. The aim of this project is to replicate the user interface and basic features to provide a hands-on learning experience.
 
-This project is a starting point for a Flutter application.
+## Features
 
-A few resources to get you started if this is your first Flutter project:
+- User Authentication (Login/Signup)
+- Browse Restaurants and Menus
+- Add Items to Cart
+- Place Orders
+- Search for Restaurants or Dishes
+- Responsive Design for both Android and iOS 
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Tech Stack
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- **Frontend:** 
+  - Flutter
+
+- **Backend:** 
+  - Firebase
+  - Firestore (Database)
