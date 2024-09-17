@@ -26,3 +26,23 @@ This app provides seamless user authentication with Google, displays restaurants
     - Google Sign-In.
   - **Firestore:**
     - Fetches restaurant and dish details.
+
+## Screens
+
+### 1. Signin Page
+<img src="https://github.com/user-attachments/assets/7d86930d-fd04-4c2d-89e3-26c5987456ba" alt="Login Page" width="300"/>
+
+
+### 2. Restaurant Page
+<img src="https://github.com/user-attachments/assets/ee0da434-a0b0-485c-b9dc-5f7bc47caf87" alt="Login Page" width="300"/>
+
+### 3. Dishes Page
+<img src="https://github.com/user-attachments/assets/f5d45784-ee63-49ee-b5fa-694f4c4752d3" alt="Login Page" width="300"/>
+
+### 4. Order Pages
+<img src="https://github.com/user-attachments/assets/02f27716-e136-4ef8-ab64-82bb3c3bec8e" alt="Login Page" width="300"/>
+<img src="https://github.com/user-attachments/assets/c48e6745-e8c0-4eb8-aa8d-80e6907c2d2b" alt="Login Page" width="300"/>
+
+### 5. Payment Pages
+<img src="https://github.com/user-attachments/assets/e69b5f6e-b275-4cd6-b75a-acc4c62ced99" alt="Login Page" width="300"/>
+<img src="https://github.com/user-attachments/assets/e46bd662-045c-42e2-aa31-92aa2f19fec6" alt="Login Page" width="300"/>
