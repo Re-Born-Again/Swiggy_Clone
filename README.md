@@ -46,3 +46,29 @@ This app provides seamless user authentication with Google, displays restaurants
 ### 5. Payment Pages
 <img src="https://github.com/user-attachments/assets/e69b5f6e-b275-4cd6-b75a-acc4c62ced99" alt="Login Page" width="300"/>
 <img src="https://github.com/user-attachments/assets/e46bd662-045c-42e2-aa31-92aa2f19fec6" alt="Login Page" width="300"/>
+
+
+## 📱 Getting Started
+### 1. Clone the repository
+```bash
+git clone https://github.com/Re-Born-Again/Swiggy_Clone.git
+cd Swiggy_Clone
+```
+### 2. Install dependencies
+```bash
+flutter pub get
+```
+### 3. Set up Firebase
+- Create a new Firebase project at https://console.firebase.google.com
+- Add an Android app with your package name
+- Download the google-services.json file and place it in android/app/
+- Enable Firebase Authentication → Google Sign-in
+- Set up Cloud Firestore and add your restaurant & dish data
+- Make sure your Firebase rules allow read access for testing
+```bash
+flutter pub get
+```
+### 4. Run the app
+```bash
+flutter run
+```
